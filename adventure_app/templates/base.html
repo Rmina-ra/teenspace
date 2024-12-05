@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="{% static './css/stlyle.css' %}">
+</head>
+<body>
+    <header>
+   <div class="container-head">
+    <h1 class="Adventure">TeenSpace</h1>
+   </div>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer">
+        <a href="" class="footer-call">
+            <img src="{% static './images/иконки_home 1.svg' %}" alt="" class="footer-img">
+        </a>
+        <a href="{% url 'home_page' %}" class="footer-home">
+            <img src="{% static './images/image (1).svg' %}" alt="" class="footer-img">
+        </a>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'sign_up_page' %}" class="footer-profile">
+            <img src="{% static './images/image 3 (2).svg' %}" alt="" class="footer-img">
+        </a>
+        <a href="{% url 'login_page' %}" class="footer-profile"></a>
+        {% else %}
+        <a href="{% url 'profile_page' %}" class="footer-profile">
+            <img src="{% static './images/image 3 (2).svg' %}" alt="" class="footer-img">
+        </a>
+        {% endif %}
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

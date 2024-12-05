@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %} 
+<section>
+    <div class="categories">
+        <div class="container">
+        <span class="scroll-content">
+        {% for category in categories %}
+        <a href="{% url 'home_page' %}" class="scroll-item">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="scroll-img">
+            <p class="scroll-title">{{ category.name }}</p>
+        </a>
+        {% endfor %}
+        </span>
+    </div>
+    </div>
+</section>
+    <section>
+    <div class="main-block">
+        <div class="search-bar">
+            <form action="{% url 'search_action' %}">
+                <div class="search-container">
+                    <input type="search" name="q" placeholder="Поиск...">
+                <button type="submit" class="poisk-butt">
+                    <img src="{% static './images/search-icon.svg' %}" alt="">
+                </button>
+                </div>
+            </form>
+        </div>
+            <div class="event-gl"><h1 class="Events">Ивенты</h1></div>
+            <div class="event-row">
+                {% for place in place %}
+                <a href="{% url 'place_detail' pk=place.pk %}" class="event-item">
+                    <img src="{% static './images/event-item1.png' %}" alt="event-item1" class="event-img">
+                    <h5 class="event-title">{{ place.category }}</h5>
+                    <h4 class="event-name">{{ place.name }}</h4>
+                {% endfor %}
+                </a>
+            </div>
+    </div>
+    </section>
+{% endblock %}

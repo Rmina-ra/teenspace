@@ -1,0 +1,14 @@
+<!-- task_detail.html  это шаблон, надо заменить-->
+<h1>{{ task.title }}</h1>
+<p>{{ task.description }}</p>
+<p>Статус: {{ task.get_status_display }}</p>
+<p>Создано: {{ task.created_at }}</p>
+
+{% if user == task.owner and task.status != 'completed' %}
+    <form method="post" action="{% url 'complete_task' task.id %}">
+        {% csrf_token %}
+        <button type="submit">Завершить задачу</button>
+    </form>
+{% elif user != task.owner %}
+    <p>Задача завершена: {{ task.completed_by.username }}</p>
+{% endif %}

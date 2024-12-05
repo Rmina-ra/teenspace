@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <div class="main-block">
+        <h1 class="login-title">Вход</h1>
+        <div class="login-field">
+        <form method="POST">
+            <div class="auth">
+            {% csrf_token %}
+            {{ form }}
+            </div>
+            <input type="submit" value="Войти" class="submit">
+            <span>
+                <p class="fast-trevel">Если у вас еще нет аккаунта перейдите по 
+                    <a href="{% url 'sign_up_page' %}" class="fast-trevel">ссылке</a>
+            </p>
+            </span>
+        </form>
+    </div>
+    </div>
+</section>
+{% endblock %}

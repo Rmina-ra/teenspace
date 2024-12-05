@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section>
+    <div class="main-block">
+        {% if place in places %}
+        <h1 class="place-name">
+            {{ place.name }}
+        </h1>
+        <p class="place-title"></p>
+        <div class="place-stats">
+            <span class="place-adress">
+                <img src="{% static './images/Place/location icon.svg' %}" alt="" class="place-adress-img">
+                <h5 class="place-adress-title"></h5>
+            </span>
+            <h4 class="place-price">Цена:  &#8376</h4>
+            <span class="place-phone">
+                <img src="{% static './images/Place/Frame 1.svg' %}" alt="" class="place-phone-img">
+                <h5 class="place-phone-number"></h5>
+            </span>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% else %}
+<section class="main-block">
+    <div class="container">
+        <div class="not_in">
+            <h1 class="notin_title">Вы анонимный пользователь</h1>
+        <p>Чтобы прочитать пост, нужно войти в аккаунт</p>
+            <a href="{% url 'login_page' %}" class="ssyl">Войти в аккаунт</a> 
+    </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
